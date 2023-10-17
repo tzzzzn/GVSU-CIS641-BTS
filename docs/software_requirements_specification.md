@@ -16,19 +16,19 @@ prior to the task.
 # 5. Notification
     - User shall opt for emails/Messages.
 # 6. Calender
-    - User shall see the tasks in the selected calender format.
+    - User shall see the tasks in the selected calendar format.
 
 ## Non-Functional Requirements
 # 1.Security
-  - User data shall be protected. 
+    - User data shall be protected.
 # 2.Authentication
-  - Only Registered users shall access the website.
+    - Only Registered users shall access the website.
 # 3.Usability
-  - The application shall have a good user interface.
+    - The application shall have a good user interface.
 # 4.Processing Time
-  - Processing time shall not take more time.
+    - Processing time shall not take more time.
 # 5.Scalability
-  - The website shall handle mutliple user requests and no downtime.
+    - The website shall handle mutiple user requests and no downtime.
 # 6.Logs
-  - Website shall have logs for backtracking if issues occured.
+    - Website shall have logs for backtracking if issues occur.
 
