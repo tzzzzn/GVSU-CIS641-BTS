@@ -36,12 +36,12 @@ Team members: Brahmiah Boyalla, Tharun Vangala
 # Estimated Timeline
 
 (Figure out what your major milestones for this project will be, including how long you anticipate it *may* take to reach that point)
-Week 1-2: Requirements gathering and project planning.
-Week 2-3: Front-end development and design.
-Week 3-5: Back-end development and database integration.
-Week 5-6: Testing, debugging, and ensuring security.
-Week 6-7: Deployment.
-Week 7-8: Collecting user feedback and making improvements.
+- Week 1-2: Requirements gathering and project planning.
+- Week 2-3: Front-end development and design.
+- Week 3-5: Back-end development and database integration.
+- Week 5-6: Testing, debugging, and ensuring security.
+- Week 6-7: Deployment.
+- Week 7-8: Collecting user feedback and making improvements.
 
 # Anticipated Problems
 
