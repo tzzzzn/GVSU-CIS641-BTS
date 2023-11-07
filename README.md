@@ -1,6 +1,6 @@
-# Team Name
+# Team BTS
 
-Project description (~1 paragraph)
+This is a task scheduler project. This is useful for users to organize their day to day tasks.
 
 ## Team Members and Roles
 

@@ -32,3 +32,29 @@ prior to the task.
 # 6.Logs
     - Website shall have logs for backtracking if issues occur.
 
+
+// Task Scheduler
+// Login/signup
+//
+User
+-userId:MongoID
+-Name 
+-Email
+-Password -> we have to store the password by changing it using some hash function.
+-Tasks -> task ID's we will have task table
+
+Tasks
+-TaskID:MongoID
+-UserID:MongoID
+-Name
+-Description
+-Currentdate
+-Completed:True/False
+-
+
+
+Tasks:
+1. Display all the tasks that user have O(N) 1 user might contain M tasks. Here n refers total tasks by all Users.
+2. Update specific task. O(1)
+3. Add new task. O(1)
+4. Delete a task. O(N).
