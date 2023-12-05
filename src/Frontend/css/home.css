@@ -1,0 +1,116 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    margin:1.2%;
+    font-family: 'Lucida Sans';
+    font-size: 20px;
+    font-weight: 500;
+}
+header{
+    border: 3px solid black;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+    
+}
+li{
+    list-style-type: none;
+}
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+nav a:hover {
+    color: brown;
+}
+main{
+    max-width:60%;
+    text-align: center;
+    margin:2% 30%;
+}
+#actual-content{
+    max-width: 80%;
+    margin-left:10%
+}
+#create-button{
+    border: 3px solid black;
+    cursor:pointer;
+}
+#create-button:hover{
+    background-color: antiquewhite;
+}
+.overlay{
+    display: none;
+    position:fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height: 100%;
+}
+.popup{
+    background-color: white;
+    /* width: 50%; */
+    padding:20px;
+    border-radius: 5px;
+    text-align: left;
+}
+#task_info div{
+    text-align: left;
+    padding: 5px;
+    text-align: left;
+    /* display: flex; */
+}
+#task_info label,input{
+    display: inline-block;
+    /* width: 100%; */
+}
+#label label{
+    display: inline;
+    text-align: center; /* Add this line to set text alignment for radio labels */
+}
+#task_decision{
+    display: flex;
+    justify-content: space-between;
+    max-width: 80%;
+    margin-left:25px;
+    margin-top:10px;
+}
+#task_decision div{
+    border:2px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#cancel:hover{
+   background-color: red;
+   color: white;
+}
+#add:hover{
+    background-color: green;
+    color: white;
+ }
+
+input, option, select{
+    font-size: 20px;
+    border: none;
+    outline: none;
+    padding: 8px;/* Add padding for a better visual appearance */
+    border: 1px solid #ccc; /* Add a border for a cleaner look */
+    border-radius: 3px; /* Add border radius for rounded corners */
+}
+input:focus {
+    border-color: dodgerblue;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.8);
+}
+#focused,#scheduled{
+    display: none;
+    margin:0;
+    padding:0;
+}

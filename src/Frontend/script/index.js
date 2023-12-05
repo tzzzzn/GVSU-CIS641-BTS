@@ -38,9 +38,9 @@ login_button.addEventListener('click',(e)=>{
         return response.json();
     }).then(data=>{
         console.log(data);
+        localStorage.setItem('jwt_token',data['jwt_token'])
         window.location.href = 'home.html'
     })
-    // console.log(login_password.value);
 });
 
 signup_button.addEventListener('click',(e)=>{
@@ -59,6 +59,7 @@ signup_button.addEventListener('click',(e)=>{
         });
         var data = await response.json();
         console.log(data);
+        localStorage.setItem('jwt_token',data['jwt_token'])
         window.location.href = 'home.html'
     }
     signup();
