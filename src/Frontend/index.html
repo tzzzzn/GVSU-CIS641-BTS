@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and SignUp</title>
+    <link rel="stylesheet" type="text/css" href="css/login-and-signup.css">
+    <script src="script/index.js" defer></script>
+</head>
+<body>
+    <div >
+        <header>
+            <nav>
+                <div ><a href='#'>Task Scheduler</a></div>
+            </nav>
+        </header>
+        <main>
+            <div id="navi">
+                <div>
+                    <a class="login" href="#" >Login</a>
+                </div>
+                <div>
+                    <a class="signup" href="#">SignUp</a>
+                </div>
+            </div>
+            <div>
+                <form id="login">
+                    <div>
+                        <label>Email:</label>
+                        <input type="text" required id="login_email">
+                    </div>
+                    <div>
+                        <label>Password:</label>
+                        <input type="password" required id="login_password">
+                    </div>
+                    <div>
+                        <button type="submit" id="login_button">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <form id="signup" style="display:none;">
+                    <div>
+                        <label>Full Name:</label>
+                        <input type="text" required id="full_name">
+                    </div>
+                    <div>
+                        <label>Mobile Number:</label>
+                        <input type="text" required id="mobile_number">
+                    </div>
+                    <div>
+                        <label>Email:</label>
+                        <input type="text" required id="signup_email">
+                    </div>
+                    <div>
+                        <label>Gender:</label>
+                        <select required name="gender" id="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Password:</label>
+                        <input type="password" required id="signup_password">
+                    </div>
+                    <div>
+                        <label>Confirm password:</label>
+                        <input type="password" required id="signup_confirm_password">
+                    </div>
+                    <div>
+                        <button class="signup" type="submit" id="signup_button">SignUp</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <script src="script/home.js" defer></script>
+    </head>
+    <body>
+        <div>
+            <header>
+                <nav>
+                    <ul>
+                        <li>
+                            <div>
+                                <a href='#'>Task Scheduler</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <a href='#' id="profile">Profile</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+            <div id="actual-content">
+                    <div id="create-button">
+                        <div>
+                            <text>Create Task +</text>
+                        </div> 
+                    </div>
+
+                    <div id="day">
+                        <div>
+                            
+                        </div>
+                    </div>
+                    <div id="week">
+                        <div>
+                            
+                        </div>
+                    </div>
+            </div>
+            <div class="overlay" id="popupOverlay">
+                <div class="popup">
+                    <div>
+                        <text>Task Details</text>
+                    </div>
+                    <div id="task_info">
+                        <div>
+                            <input type="text" required id="task_name"  placeholder="Task name">
+                        </div>
+                        <div>
+                            <input type="textarea" required id="task_description" placeholder="Task description">
+                        </div>
+                        <div>
+                            <label>Start : </label>
+                            <input type="date" required id="start_date">
+                        </div>
+                        <div>
+                            <label>Time : </label>
+                            <input type="time" required id="start_time">
+                        </div>
+                        <div id="label">
+                            <label>Task Type:</label>
+                            <select required name="task_type" id="task_type">
+                                <option value="to_do">To do</option>
+                                <option value="focused">Focused</option>
+                                <option value="scheduled">Scheduled</option>
+                            </select>
+                        </div>
+                        <div id="focused">
+                            <label>Task time : </label>
+                            <input type="time" required id="task_time">
+                        </div>
+                        <div id="scheduled">
+                            <div>
+                                <label>Task time : </label>
+                                <input type="time" required id="task_time">
+                            </div>
+                            <div>
+                                <label>End time : </label>
+                                <input type="time" required id="end_time">
+                            </div>
+                            <div>
+                                <label>End date : </label>
+                                <input type="date" required id="end_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="task_decision">
+                        <div id="cancel">
+                            <text>Cancel</text>
+                        </div>
+                        <div id="add">
+                            <text>Add</text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </main>
+        </div>
+    </body>
+</html>
+
