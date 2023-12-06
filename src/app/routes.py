@@ -62,4 +62,44 @@ def signup():
         print(e)
         return jsonify({'message':'signup failed'})
     
+@app.route('/addTask',methods=['POST'])
+def addTask():
+    print("addTask")
+    try:
+        authorization_header=request.headers.get('Authorization')
+        if(authorization_header):
+            token = authorization_header.split(' ')[1]
+        data=request.get_json()
+        data['userId']=ObjectId(token)
+        print(data)
+        data['task_status'] = "new"
+        res = database.add_task(data)
+        print(res)
+        return jsonify({'message':'task added sucessfully'})
+    except Exception as e:
+        print(e)
+        return jsonify({'message':'failed to add task'})
 
+@app.route('/get_tasks',methods=['GET'])
+def get_tasks():
+    print('get tasks')
+    date_param = request.args.get('date')
+    authorization_header=request.headers.get('Authorization')
+    if(authorization_header):
+        token = authorization_header.split(' ')[1]
+    all_tasks = []
+    search_params = {'userId':ObjectId(token), 'start_date':date_param}
+    to_do_tasks = database.get_task("to_do",search_params)
+    all_tasks += list(to_do_tasks)
+    focused_tasks = database.get_task("focused",search_params)
+    all_tasks+=list(focused_tasks)
+    search_params['start_date'] = {'$lte': date_param}
+    search_params['end_date'] = {'$gte': date_param}
+    recurring_tasks = database.get_task("recurring",search_params)
+    all_tasks+=list(recurring_tasks)
+    sorted_tasks = sorted(all_tasks, key=lambda x: x['start_time'])
+    print(sorted_tasks)
+    for task in sorted_tasks:
+        task['_id'] = str(task['_id'])
+        task['userId'] = str(task['userId'])
+    return jsonify({'tasks':sorted_tasks})

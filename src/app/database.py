@@ -18,3 +18,11 @@ def add_user(user):
 def get_user_details(user,details):
     res = db.user.find_one(user,details)
     return res
+
+def add_task(data):
+    res = db[data['task_type']].insert_one(data)
+    return res.inserted_id
+
+def get_task(collection,search_param):
+    res = db[collection].find(search_param)
+    return res
