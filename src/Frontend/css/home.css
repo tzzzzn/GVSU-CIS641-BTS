@@ -83,7 +83,7 @@ main{
     text-align: left;
     /* display: flex; */
 }
-#task_info label,input{
+#task_info label,#task_info input{
     display: inline-block;
     /* width: 100%; */
 }
@@ -147,11 +147,12 @@ input:focus {
 #task_time{
     font-size:x-large;
     padding:2%;
+    display: inline;
 }
 #task_title{
     padding:2%;
 }
-#task_end_time,#task_task_type{
+#task_task_type{
     display: None;
 }
 #task_operations{
@@ -166,4 +167,15 @@ input:focus {
 #task_update_status option,#task_update_status select{
     font-size: 15px;
     padding: 0px;
+}
+#time{
+    display: flex;
+}
+#task_end_time{
+    display: None;
+    font-size:x-large;
+    padding: 2%;
+}
+#task_delete{
+    cursor: pointer;
 }

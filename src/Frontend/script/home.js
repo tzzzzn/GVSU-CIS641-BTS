@@ -42,17 +42,20 @@ function display_tasks(){
         tasks.forEach(task => {
             const taskBoxDiv = document.createElement('div');
             taskBoxDiv.id = 'task_box';
-        
+            taskBoxDiv.classList=task._id;
+            const time = document.createElement('div');
+            time.id = 'time';
             const taskTimeDiv = document.createElement('div');
             taskTimeDiv.id = 'task_time';
             taskTimeDiv.textContent = task.start_time;
-            taskBoxDiv.appendChild(taskTimeDiv);
-        
+            time.appendChild(taskTimeDiv);
             const taskEndTimeDiv = document.createElement('div');
             taskEndTimeDiv.id = 'task_end_time';
-            taskEndTimeDiv.textContent = task.end_time;
-            taskBoxDiv.appendChild(taskEndTimeDiv);
-        
+            taskEndTimeDiv.textContent = `-  ${task.end_time}`;
+            time.appendChild(taskEndTimeDiv);
+            if(task.task_type!='to_do')
+                taskEndTimeDiv.style.display="inline";
+            taskBoxDiv.appendChild(time);
             const taskTypeDiv = document.createElement('div');
             taskTypeDiv.id = 'task_task_type';
             taskTypeDiv.textContent = task.task_type;
@@ -70,11 +73,6 @@ function display_tasks(){
         
             const taskOperationsDiv = document.createElement('div');
             taskOperationsDiv.id = 'task_operations';
-        
-            const taskUpdateDiv = document.createElement('div');
-            taskUpdateDiv.id = 'task_update';
-            taskUpdateDiv.textContent = 'Update';
-            taskOperationsDiv.appendChild(taskUpdateDiv);
         
             const taskDeleteDiv = document.createElement('div');
             taskDeleteDiv.id = 'task_delete';
@@ -219,3 +217,49 @@ function cancel_popup(){
         recurring.style.display='none';
 }
 cancel.addEventListener('click',cancel_popup);
+
+const tasks_list = document.querySelector('#tasks_list')
+tasks_list.addEventListener('click',(e)=>{
+    console.log(e.target);
+    if(e.target.id=='task_update_type')
+    {
+        console.log('task_update_type');
+        console.log(e.target.parentNode.parentNode.parentNode.className);
+        const parent = e.target.parentNode.parentNode.parentNode;
+        const task_type = parent.querySelector('#task_task_type').innerText;
+        console.log(task_type);
+        async function updateStatus(){
+            var response = await fetch('http://127.0.0.1:5000/updateTask',{
+                body:JSON.stringify({'_id':parent.className,'task_type':task_type,'update':{'task_status': e.target.value}}),
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',  // Set the content type to JSON
+                    'Authorization':`Bearer ${localStorage.getItem('jwt_token')}`
+                },
+            });
+            var data = await response.json();
+        }
+        updateStatus();
+    }
+    else if(e.target.id=='task_delete')
+    {
+        console.log('task_delete');
+        console.log(e.target.parentNode.parentNode.className);
+        const parent = e.target.parentNode.parentNode;
+        const task_type = parent.querySelector('#task_task_type').innerText;
+        console.log(task_type);
+        async function deletetask(){
+            var response = await fetch('http://127.0.0.1:5000/deleteTask',{
+                body:JSON.stringify({'_id':parent.className,'task_type':task_type}),
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',  // Set the content type to JSON
+                    'Authorization':`Bearer ${localStorage.getItem('jwt_token')}`
+                },
+            });
+            var data = await response.json();
+            display_tasks();
+        }
+        deletetask();
+    }
+});
