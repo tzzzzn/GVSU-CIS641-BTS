@@ -64,7 +64,7 @@ function display_tasks(){
             taskBoxDiv.appendChild(taskTitleDiv);
         
             const taskDescriptionDiv = document.createElement('div');
-            taskDescriptionDiv.id = 'task_description';
+            taskDescriptionDiv.id = 'task_task_description';
             taskDescriptionDiv.textContent = task.task_description;
             taskBoxDiv.appendChild(taskDescriptionDiv);
         
@@ -188,6 +188,7 @@ add.addEventListener('click',()=>{
         });
         var data = await response.json();
         cancel_popup();
+        display_tasks();
     }
     console.log(data1);
     addTask();

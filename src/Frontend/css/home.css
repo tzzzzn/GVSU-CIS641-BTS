@@ -140,7 +140,7 @@ input:focus {
     padding: 5%;
 }
 
-#task_description{
+#task_task_description{
     font-weight: 100;
     padding:2%;
 }
@@ -163,7 +163,7 @@ input:focus {
     height: 15px;
     width:18px;
 }
-#task_update_status option,select{
+#task_update_status option,#task_update_status select{
     font-size: 15px;
     padding: 0px;
 }
