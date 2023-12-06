@@ -263,3 +263,8 @@ tasks_list.addEventListener('click',(e)=>{
         deletetask();
     }
 });
+const logout = document.querySelector('#logout');
+logout.addEventListener('click',()=>{
+    localStorage.clear();
+    window.location.href = 'index.html'
+});
