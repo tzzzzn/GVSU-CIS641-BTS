@@ -26,3 +26,11 @@ def add_task(data):
 def get_task(collection,search_param):
     res = db[collection].find(search_param)
     return res
+
+def update_task(collection,task_id,update):
+    res = db[collection].update_one({'_id':task_id},{"$set":update})
+    return res
+
+def delete_task(collection,task_id):
+    res = db[collection].delete_one({'_id':task_id})
+    return res

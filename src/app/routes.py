@@ -103,3 +103,21 @@ def get_tasks():
         task['_id'] = str(task['_id'])
         task['userId'] = str(task['userId'])
     return jsonify({'tasks':sorted_tasks})
+
+@app.route('/updateTask',methods=['POST'])
+def updateTask():
+    authorization_header=request.headers.get('Authorization')
+    if(authorization_header):
+        userId = ObjectId(authorization_header.split(' ')[1])
+    data=request.get_json()
+    res = database.update_task(data['task_type'],ObjectId(data['_id']),data['update'])
+    return jsonify({'message':'updated'})
+
+@app.route('/deleteTask',methods=['POST'])
+def deleteTask():
+    authorization_header=request.headers.get('Authorization')
+    if(authorization_header):
+        userId = ObjectId(authorization_header.split(' ')[1])
+    data=request.get_json()
+    res = database.delete_task(data['task_type'],ObjectId(data['_id']))
+    return jsonify({'message':'deleted'})
