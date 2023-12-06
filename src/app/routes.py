@@ -2,6 +2,7 @@ from app import app
 from flask import request, jsonify
 from app.Config import config
 from app import database
+from app import notify
 import bcrypt
 import jwt
 from bson import ObjectId
@@ -121,3 +122,42 @@ def deleteTask():
     data=request.get_json()
     res = database.delete_task(data['task_type'],ObjectId(data['_id']))
     return jsonify({'message':'deleted'})
+
+from apscheduler.schedulers.background import BackgroundScheduler
+from datetime import datetime,timedelta,time
+scheduler = BackgroundScheduler()
+
+def identify_tasks():
+    #Fetch all the tasks whose start
+    date_param = str(datetime.now().strftime('%Y:%m:%d')).replace(':','-')
+    print(date_param)
+    search_params = {'start_date':date_param}
+    all_tasks = []
+    to_do_tasks = database.get_task("to_do",search_params)
+    all_tasks += list(to_do_tasks)
+    focused_tasks = database.get_task("focused",search_params)
+    all_tasks+=list(focused_tasks)
+    search_params['start_date'] = {'$lte': date_param}
+    search_params['end_date'] = {'$gte': date_param}
+    recurring_tasks = database.get_task("recurring",search_params)
+    all_tasks+=list(recurring_tasks)
+    now = datetime.now()
+    for task in all_tasks:
+        task_start_time = datetime.strptime(task['start_time'], '%H:%M').time()
+        print(task_start_time)
+        now_datetime = datetime.combine(datetime.today(), now.time())
+        print(now_datetime)
+        task_start_datetime = datetime.combine(datetime.today(), task_start_time)
+        time_diff = task_start_datetime - now_datetime
+        print(time_diff)
+        if time_diff <= timedelta(minutes=1) and time_diff>timedelta(minutes=0):
+            print('sending email')
+            k = database.get_user_details({'_id':task['userId']},{'email':1})
+            print(k)
+            task['user_mail'] = k['email']
+            notify.sendemail(task)
+
+def initialize_scheduler():
+    scheduler.add_job(identify_tasks, 'interval', minutes=1)
+    scheduler.start()
+initialize_scheduler()
