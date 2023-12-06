@@ -34,13 +34,45 @@
                     </div>
 
                     <div id="day">
-                        <div>
-                            
+                        <div id="day-first-div">
+                            <div id="prev-day">
+                                <img src="./images/left-arrow.png">
+                            </div>
+                            <div id="month-day">
+                                Month day
+                            </div>
+                            <div id="next-day">
+                                <img src="./images/right-arrow.png">
+                            </div>
                         </div>
                     </div>
                     <div id="week">
                         <div>
                             
+                        </div>
+                    </div>
+
+                    <div id="tasks_list">
+                        <div>
+                            <div id="task_box">
+                                <div id="task_time">4:00</div>
+                                <div id="task_end_time">5:00</div>
+                                <div id="task_task_type">to_do</div>
+                                <div id="task_title">Task Title</div>
+                                <div id="task_description">This is the task description that awe are testing hwo can this go to logn</div>
+                                <div id="task_operations">
+                                    <div id="task_update">Update</div>
+                                    <div id="task_delete">Delete</div>
+                                    <div id="task_update_status">
+                                        <select required id="task_update_type">
+                                            <option value="new">New</option>
+                                            <option value="started">Started</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="completed">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
             </div>
@@ -69,21 +101,17 @@
                             <select required name="task_type" id="task_type">
                                 <option value="to_do">To do</option>
                                 <option value="focused">Focused</option>
-                                <option value="scheduled">Scheduled</option>
+                                <option value="recurring">Recurring</option>
                             </select>
                         </div>
                         <div id="focused">
-                            <label>Task time : </label>
-                            <input type="time" required id="task_time">
+                            <label>End time : </label>
+                            <input type="time" required id="focused_end_time">
                         </div>
-                        <div id="scheduled">
-                            <div>
-                                <label>Task time : </label>
-                                <input type="time" required id="task_time">
-                            </div>
+                        <div id="recurring">
                             <div>
                                 <label>End time : </label>
-                                <input type="time" required id="end_time">
+                                <input type="time" required id="recurring_end_time">
                             </div>
                             <div>
                                 <label>End date : </label>
@@ -105,4 +133,3 @@
         </div>
     </body>
 </html>
-
