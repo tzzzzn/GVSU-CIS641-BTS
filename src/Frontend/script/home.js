@@ -1,20 +1,24 @@
-profile = document.querySelector('#profile')
-let create_task = document.querySelector('#create-button');
-let overlay = document.querySelector('.overlay');
-let add = document.querySelector('#add');
-let cancel = document.querySelector('#cancel');
-task_name=document.querySelector('#task_name');
-task_description = document.querySelector('#task_description');
-task_type = document.querySelector('#task_type');
-start_date=document.querySelector('#start_date');
-start_time=document.querySelector('#start_time');
-focused_end_time = document.querySelector('#focused_end_time');
-recurring_end_time = document.querySelector('#recurring_end_time');
-recurring_end_date = document.querySelector('#end_date');
-focused=document.querySelector('#focused');
-recurring=document.querySelector('#recurring');
-prevday = document.querySelector('#prev-day');
-nextday = document.querySelector('#next-day');
+const profile = document.querySelector('#profile')
+const  create_task = document.querySelector('#create-button');
+const overlay = document.querySelector('.overlay');
+const add = document.querySelector('#add');
+const cancel = document.querySelector('#cancel');
+const task_name=document.querySelector('#task_name');
+const task_description = document.querySelector('#task_description');
+const task_type = document.querySelector('#task_type');
+const start_date=document.querySelector('#start_date');
+const start_time=document.querySelector('#start_time');
+const focused_end_time = document.querySelector('#focused_end_time');
+const recurring_end_time = document.querySelector('#recurring_end_time');
+const recurring_end_date = document.querySelector('#end_date');
+const focused=document.querySelector('#focused');
+const recurring=document.querySelector('#recurring');
+const prevday = document.querySelector('#prev-day');
+const nextday = document.querySelector('#next-day');
+const logout = document.querySelector('#logout');
+const tasks_list = document.querySelector('#tasks_list')
+const errorMessageDiv = document.getElementById('error-message');
+
 let currentDate= new Date();
 
 function display_tasks(){
@@ -111,6 +115,7 @@ function display_tasks(){
     }
     get_tasksk();
 }
+
 function displayCurrentDate() {
     const options = { month: 'long', day: 'numeric' };
     const formattedDate = new Intl.DateTimeFormat('en-US', options).format(currentDate);
@@ -139,6 +144,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 create_task.addEventListener('click',()=>{
+    // Reset input fields
+    task_name.value = '';
+    task_description.value = '';
+    start_date.value = '';
+    start_time.value = '';
+    focused_end_time.value = '';
+    recurring_end_time.value = '';
+    recurring_end_date.value = '';
+
+    // Reset task type to 'to_do'
+    task_type.value = 'to_do';
+
+    // Reset the visibility of focused and recurring sections
+    focused.style.display = 'none';
+    recurring.style.display = 'none';
+
     overlay.style.display="flex";
 });
 
@@ -160,7 +181,50 @@ nextday.addEventListener('click',()=>{
     nextDay();
 });
 
+function validateTaskFields() {
+    // Add validation logic for each field
+    if (!task_name.value || task_name.value.length > 50) {
+        errorMessageDiv.innerText = "Error:'Task name is required.'";
+        return false;
+    }
+
+    if (!task_description.value || task_description.value.length > 500) {
+        errorMessageDiv.innerText = "Erro: 'Task description is required.'";
+        return false;
+    }
+
+    if (!start_date.value) {
+        errorMessageDiv.innerText = "Erro: 'Start date is required.'";
+        return false;
+    }
+
+    if (!start_time.value) {
+        errorMessageDiv.innerText = "Erro: 'Start time is required.'";
+        return false;
+    }
+
+    if (task_type.value === 'focused' && !focused_end_time.value) {
+        errorMessageDiv.innerText = "Erro: 'Focused task requires end time.'";
+        return false;
+    }
+
+    if (task_type.value === 'recurring') {
+        if (!recurring_end_time.value || !recurring_end_date.value) {
+            errorMessageDiv.innerText = "Erro: 'Recurring task requires end time and end date.'";
+            return false;
+        }
+    }
+    return true;
+}
+
 add.addEventListener('click',()=>{
+
+    errorMessageDiv.innerText = ''; // Clear previous error messages
+    if (!validateTaskFields()) {
+        // Display an error message or take appropriate action
+        return;
+    }
+
     const data1={
         'task_name':task_name.value,
         'task_description':task_description.value,
@@ -176,7 +240,7 @@ add.addEventListener('click',()=>{
         data1['end_date'] = recurring_end_date.value;
     }
     async function addTask(){
-        var response = await fetch('http://127.0.0.1:5000/addTask',{
+        const response = await fetch('http://127.0.0.1:5000/addTask',{
             body:JSON.stringify(data1),
             method:'POST',
             headers: {
@@ -184,13 +248,14 @@ add.addEventListener('click',()=>{
                 'Authorization':`Bearer ${localStorage.getItem('jwt_token')}`
             },
         });
-        var data = await response.json();
+        const data = await response.json();
         cancel_popup();
         display_tasks();
     }
     console.log(data1);
     addTask();
 });
+
 task_type.addEventListener('change',()=>{
     if(task_type.value=='focused')
     {
@@ -210,6 +275,7 @@ task_type.addEventListener('change',()=>{
         recurring.style.display='none';
     }
 });
+
 function cancel_popup(){
         overlay.style.display="none";
         task_type.value='to_do';
@@ -218,7 +284,6 @@ function cancel_popup(){
 }
 cancel.addEventListener('click',cancel_popup);
 
-const tasks_list = document.querySelector('#tasks_list')
 tasks_list.addEventListener('click',(e)=>{
     console.log(e.target);
     if(e.target.id=='task_update_type')
@@ -263,7 +328,7 @@ tasks_list.addEventListener('click',(e)=>{
         deletetask();
     }
 });
-const logout = document.querySelector('#logout');
+
 logout.addEventListener('click',()=>{
     localStorage.clear();
     window.location.href = 'index.html'

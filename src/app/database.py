@@ -3,12 +3,18 @@ from pymongo import MongoClient
 username = config.DATABASE['user']
 password = config.DATABASE['password']
 
-uri = f"mongodb+srv://{username}:{password}@intro.fxyymn1.mongodb.net/?retryWrites=true&w=majority"
+def connect_to_database():
+    try:
+        uri = f"mongodb+srv://{username}:{password}@intro.fxyymn1.mongodb.net/?retryWrites=true&w=majority"
+        client = MongoClient(uri)
+        db = client.task_scheduler # db = client['task_scheduler']
+        print("Connected to the database")
+        return db
+    except ConnectionError as e:
+        print(f"Error connecting to the database: {e}")
+        raise
 
-# Create a new client and connect to the server
-client = MongoClient(uri)
-# Connect to the database
-db = client.task_scheduler # db = client['task_scheduler']
+db = connect_to_database()
 
 def add_user(user):
     res = db.user.insert_one(user)
