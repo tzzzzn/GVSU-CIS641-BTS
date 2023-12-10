@@ -48,6 +48,17 @@
             text-align: center;
             padding: 10px;
         }
+        #github-link,#download-link{
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #github-link:hover,#download-link:hover{
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -66,7 +77,14 @@
     </section>
     <section id="srs">
         <h2>SRS Document</h2>
-        <p>For detailed information about the project, please refer to the <a href="https://github.com/tzzzzn/GVSU-CIS641-BTS/blob/main/docs/software_requirements_specification.md">SRS Document</a>.</p>
+        <p>For detailed information about the project, please refer to the <a href="https://github.com/tzzzzn/GVSU-CIS641-BTS/blob/main/docs/software_requirements_specification_final.md">SRS Document</a>.</p>
+        
+        <!-- New GitHub link section -->
+        <div>
+            <p>Explore the code on GitHub:</p>
+            <button id="github-link" onclick="window.location.href='https://github.com/tzzzzn/GVSU-CIS641-BTS'">View on GitHub</button>
+            <button id="download-link" onclick="window.location.href='https://github.com/tzzzzn/GVSU-CIS641-BTS/archive/main.zip'">Download Code</button>
+        </div>
     </section>
     <footer>
         <p>&copy; Team BTS</p>
