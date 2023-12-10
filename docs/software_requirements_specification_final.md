@@ -235,4 +235,6 @@ To ensure transparency and alignment between software requirements and artifacts
 * [Database Design](https://github.com/tzzzzn/GVSU-CIS641-BTS/blob/main/docs/Database_Design.png)
 * [Use Case Diagram](https://github.com/tzzzzn/GVSU-CIS641-BTS/blob/main/docs/Use-case%20Diagram.pdf)
 * [Activity Diagram](https://github.com/tzzzzn/GVSU-CIS641-BTS/blob/main/docs/Activity%20Diagram.pdf)
+* [Object Diagram](https://github.com/tzzzzn/GVSU-CIS641-BTS/blob/main/docs/object%20diagrams.pdf)
+* [Navigation Diagram](https://github.com/tzzzzn/GVSU-CIS641-BTS/blob/main/docs/Navigation%2Bdiagram.pdf)
 
