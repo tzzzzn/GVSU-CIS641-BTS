@@ -1,0 +1,7 @@
+flask
+flask_cors
+bcrypt
+firebase-admin
+pymongo
+PyJWT
+apscheduler
